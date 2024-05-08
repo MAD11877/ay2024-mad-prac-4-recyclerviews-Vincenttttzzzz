@@ -39,9 +39,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserViewHolder> {
         User list_items = list_objects.get(position);
         holder.bigImage.setVisibility(View.GONE);
         //Set username to the view holder based on custom_activity_list.xml
-        holder.name.setText(list_items.getName());
+        holder.name.setText(list_items.name);
         //Set description to the view holder based on custom_activity_list.xml
-        holder.description.setText(list_items.getDescription());
+        holder.description.setText(list_items.description);
         //Configure setOnClickListener() for the small image on the view holder based on custom_activity_list.xml
         holder.smallImage.setOnClickListener(new View.OnClickListener() {
             @Override

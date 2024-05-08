@@ -28,12 +28,8 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        String name = getIntent().getStringExtra("keyName");
-        String desc = getIntent().getStringExtra("keyDesc");
-        Boolean foll = getIntent().getBooleanExtra("keyFoll", false);
 
         User user = new User("John Doe", "MAD Developer", 1, false);
-
 
         TextView tvName = findViewById(R.id.tvName);
         TextView tvDescription = findViewById(R.id.tvDescription);
@@ -42,14 +38,21 @@ public class MainActivity extends AppCompatActivity {
 
         int num = new Random().nextInt(99999);
 
-//        tvName.setText(user.name + " " + num);
-//        tvDescription.setText(user.description);
 
-        tvName.setText(name);
-        tvDescription.setText(desc);
-        if (foll == true){
-            btnFollow.setText("Unfollow");
+        Intent intent = getIntent();
+        if (intent != null) {
+            String name = getIntent().getStringExtra("keyName");
+            String desc = getIntent().getStringExtra("keyDesc");
+            Boolean foll = getIntent().getBooleanExtra("keyFoll", false);
+            tvName.setText(name);
+            tvDescription.setText(desc);
+            if (foll){
+                btnFollow.setText("Unfollow");
+            }
         }
+
+        tvName.setText(user.name+num);
+        tvDescription.setText(user.description);
 
         Intent listActivity = new Intent(this, ListActivity.class);
 
