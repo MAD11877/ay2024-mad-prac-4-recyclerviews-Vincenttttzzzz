@@ -37,11 +37,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserViewHolder> {
     public void onBindViewHolder(UserViewHolder holder, int position){
         //Get position of a username
         User list_items = list_objects.get(position);
-        holder.bigImage.setVisibility(View.GONE);
         //Set username to the view holder based on custom_activity_list.xml
-        holder.name.setText(list_items.name);
+        holder.name.setText(list_items.getName());
         //Set description to the view holder based on custom_activity_list.xml
-        holder.description.setText(list_items.description);
+        holder.description.setText(list_items.getDescription());
         //Configure setOnClickListener() for the small image on the view holder based on custom_activity_list.xml
         holder.smallImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,49 +48,22 @@ public class UserAdapter extends RecyclerView.Adapter<UserViewHolder> {
                 //Context context = v.getContext(); // Get context from the clicked view
                 AlertDialog.Builder builder = new AlertDialog.Builder(activity);
                 builder.setTitle("Profile");
-                builder.setMessage(list_items.name);
+                builder.setMessage(list_items.getName());
                 builder.setCancelable(false);
                 builder.setPositiveButton("View", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Intent i = new Intent(activity, MainActivity.class);
-                        i.putExtra("keyName", list_items.name);
-                        i.putExtra("keyDesc", list_items.description);
-                        i.putExtra("keyFoll", list_items.followed);
+                        i.putExtra("keyName", list_items.getName());
+                        i.putExtra("keyDesc", list_items.getDescription());
+                        i.putExtra("keyFoll", list_items.getFollowed());
                         activity.startActivity(i);
                     }
                 });
                 builder.setNegativeButton("Close", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-                builder.show();
-            }
-        });
-        holder.bigImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Context context = v.getContext(); // Get context from the clicked view
-                AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-                builder.setTitle("Profile");
-                builder.setMessage(list_items.name);
-                builder.setCancelable(false);
-                builder.setPositiveButton("View", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent i = new Intent(activity, MainActivity.class);
-                        i.putExtra("keyName", list_items.name);
-                        i.putExtra("keyDesc", list_items.description);
-                        i.putExtra("keyFoll", list_items.followed);
-                        activity.startActivity(i);
-                    }
-                });
-                builder.setNegativeButton("Close", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
+                        dialog.dismiss();
                     }
                 });
                 builder.show();

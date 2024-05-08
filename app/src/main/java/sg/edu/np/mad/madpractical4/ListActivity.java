@@ -35,9 +35,9 @@ public class ListActivity extends AppCompatActivity {
             boolean followed = new Random().nextBoolean();
 
             User user = new User("John Doe", "MAD Developer", 1, false);
-            user.name = "Name"+String.valueOf(name);
-            user.description = "Description"+String.valueOf(description);
-            user.followed = followed;
+            user.setName("Name"+String.valueOf(name));
+            user.setDescription("Description"+String.valueOf(description));
+            user.setFollowed(followed);
             myUser_List.add(user);
         }
 
