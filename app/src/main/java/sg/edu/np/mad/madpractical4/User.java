@@ -17,5 +17,6 @@ public class User {
         this.description = description;
         this.id = id;
         this.followed = followed;
+
     }
 }
