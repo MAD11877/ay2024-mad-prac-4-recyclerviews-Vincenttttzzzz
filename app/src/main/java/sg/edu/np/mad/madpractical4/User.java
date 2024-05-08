@@ -14,8 +14,8 @@ public class User {
     public boolean getFollowed() {return followed;}
     public User(String name, String description, int id, boolean followed) {
         this.name = name;
-        //this.description = description;
-        //this.id = id;
-        //this.followed = followed;
+        this.description = description;
+        this.id = id;
+        this.followed = followed;
     }
 }
