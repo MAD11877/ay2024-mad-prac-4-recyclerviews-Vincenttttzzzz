@@ -70,6 +70,33 @@ public class UserAdapter extends RecyclerView.Adapter<UserViewHolder> {
                 builder.show();
             }
         });
+        holder.bigImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Context context = v.getContext(); // Get context from the clicked view
+                AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                builder.setTitle("Profile");
+                builder.setMessage(list_items.name);
+                builder.setCancelable(false);
+                builder.setPositiveButton("View", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent i = new Intent(activity, MainActivity.class);
+                        i.putExtra("keyName", list_items.name);
+                        i.putExtra("keyDesc", list_items.description);
+                        i.putExtra("keyFoll", list_items.followed);
+                        activity.startActivity(i);
+                    }
+                });
+                builder.setNegativeButton("Close", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                builder.show();
+            }
+        });
 
         char num = list_items.name.charAt(list_items.name.length() - 1);
         Log.d("num", String.valueOf(num));
